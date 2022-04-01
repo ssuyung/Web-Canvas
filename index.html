@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <body onload="init()">
+    <div style="float: left">
+        <canvas id="myCanvas" width="1000" height="600" style="border:1px solid #000000;">
+        Your browser does not support the HTML canvas tag.
+        </canvas>
+        
+    </div>
+    <div>
+        <!-- <img src="hello.jpg"> -->
+        <input type="color" id="colorpicker" name="head" value="#000000">
+        <input type="image" class="button" id="eraser" src="hello.jpg" onClick="clickbutton('eraser')" width="20" height="20" style="float:left"/>
+        <input type="image" class="button" id="pen" src="hello.jpg" onClick="clickbutton('pen')" width="20" height="20" style="float:left"/>
+        <div>
+            <form action="/action_page.php">
+                <p>Please select your favorite Web language:</p>
+                <input type="radio" id="html" name="fav_language" value="HTML">
+                <label for="html">HTML</label><br>
+                <input type="radio" id="css" name="fav_language" value="CSS">
+                <label for="css">CSS</label><br>
+                <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+                <label for="javascript">JavaScript</label>
+        </div>
+        <div class="slidecontainer">
+            <input type="range" oninput="changeThickness()" min="1" max="100" value="50" class="slider" id="thickness">
+        </div>
+    </div>
+    <script src="index.js"></script>
+    </body>
+</html>
