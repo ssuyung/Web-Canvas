@@ -6,9 +6,9 @@
 var cur_x, cur_y, prev_x, prev_y,
     mouse_down = false, 
     thickness = 50;
-    canvas = document.getElementById('myCanvas'),
-    ctx = canvas.getContext("2d"),
-    cur_function="pen";
+    canvas = document.getElementById('myCanvas'), ctx = canvas.getContext("2d"),
+    cur_function="pen",
+    cPushArray = new Array(), cStep=-1;
 function init() {
     // cur_x = cur_y = prev_x = prev_y = 0;
     // mouse_down = false;
@@ -41,6 +41,7 @@ function findxy(movement, e){
             else if(cur_function=="eraser") erase();
         }
     } else if(movement == "down"){
+        cPush();
         mouse_down = true;
         prev_x = cur_x;
         prev_y = cur_y
@@ -49,6 +50,7 @@ function findxy(movement, e){
         console.log(cur_x, cur_y);
     } else if(movement == "up"){
         mouse_down = false;
+        
     } else if(movement == "out"){
 
     }
@@ -75,4 +77,29 @@ function changeThickness(){
     var slider=document.getElementById("thickness");
     thickness = slider.value;
     console.log("Change thickness to " + thickness);
+}
+
+function cPush() {
+    cStep++;
+    if (cStep < cPushArray.length) { cPushArray.length = cStep; }
+    cPushArray.push(canvas.toDataURL());
+    console.log("Image saved, step: "+cStep);
+}
+function cUndo() {
+    console.log("Undo, steps: "+cStep);
+    if (cStep > 0) {
+        cStep--;
+        var canvasPic = new Image();
+        canvasPic.src = cPushArray[cStep];
+        canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0); }
+    }
+}
+function cRedo() {
+    console.log("Redo");
+    if (cStep < cPushArray.length-1) {
+        cStep++;
+        var canvasPic = new Image();
+        canvasPic.src = cPushArray[cStep];
+        canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0); }
+    }
 }
