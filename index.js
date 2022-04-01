@@ -16,7 +16,10 @@ function init() {
     
     // ctx = canvas.getContext("2d");
    
-
+    var state = ctx.getImageData(0,0,canvas.width, canvas.height);
+    window.history.pushState(state, null);
+    
+    cPush(); //save the initial canvas so that we can undo all the way back to empty canvas
     canvas.addEventListener("mousemove", function (e) {
         findxy('move', e)
     }, false);
@@ -29,6 +32,7 @@ function init() {
     canvas.addEventListener("mouseout", function (e) {
         findxy('out', e)
     }, false);
+    window.addEventListener('popstate', changeStep, false);
 }
 function findxy(movement, e){
     if(movement == "move"){
@@ -41,7 +45,6 @@ function findxy(movement, e){
             else if(cur_function=="eraser") erase();
         }
     } else if(movement == "down"){
-        cPush();
         mouse_down = true;
         prev_x = cur_x;
         prev_y = cur_y
@@ -49,8 +52,10 @@ function findxy(movement, e){
         cur_y = e.clientY - canvas.offsetTop;
         console.log(cur_x, cur_y);
     } else if(movement == "up"){
+        cPush();
+        var state = ctx.getImageData(0,0,canvas.width, canvas.height);
+        window.history.pushState(state, null); 
         mouse_down = false;
-        
     } else if(movement == "out"){
 
     }
@@ -78,26 +83,42 @@ function changeThickness(){
     thickness = slider.value;
     console.log("Change thickness to " + thickness);
 }
-
+function changeStep(e){
+    // 清除畫布
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  
+    // 透過 e.state 取得先前存到 window.history 的狀態
+    if( e.state ){
+      ctx.putImageData(e.state, 0, 0);
+    }
+}
+  
 function cPush() {
     cStep++;
-    if (cStep < cPushArray.length) { cPushArray.length = cStep; }
+    
+    if (cStep < cPushArray.length-1) { cPushArray.length = cStep; }
     cPushArray.push(canvas.toDataURL());
     console.log("Image saved, step: "+cStep);
 }
 function cUndo() {
-    console.log("Undo, steps: "+cStep);
+    
     if (cStep > 0) {
         cStep--;
+        console.log("Undo, steps: "+cStep);
         var canvasPic = new Image();
         canvasPic.src = cPushArray[cStep];
-        canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0); }
+        canvasPic.onload = function () { 
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(canvasPic, 0, 0);
+        }
+        
     }
 }
 function cRedo() {
-    console.log("Redo");
+    
     if (cStep < cPushArray.length-1) {
         cStep++;
+        console.log("Redo, step: "+cStep);
         var canvasPic = new Image();
         canvasPic.src = cPushArray[cStep];
         canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0); }
