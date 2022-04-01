@@ -83,7 +83,7 @@ function changeThickness(){
     thickness = slider.value;
     console.log("Change thickness to " + thickness);
 }
-function changeStep(e){
+function changeStep(e){ //undo, redo with "previous/next page button" of browser
     // 清除畫布
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   
@@ -95,7 +95,6 @@ function changeStep(e){
   
 function cPush() {
     cStep++;
-    
     if (cStep < cPushArray.length-1) { cPushArray.length = cStep; }
     cPushArray.push(canvas.toDataURL());
     console.log("Image saved, step: "+cStep);
@@ -115,7 +114,6 @@ function cUndo() {
     }
 }
 function cRedo() {
-    
     if (cStep < cPushArray.length-1) {
         cStep++;
         console.log("Redo, step: "+cStep);
@@ -123,4 +121,8 @@ function cRedo() {
         canvasPic.src = cPushArray[cStep];
         canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0); }
     }
+}
+function clearcanvas(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    console.log("Cleared canvas");
 }
