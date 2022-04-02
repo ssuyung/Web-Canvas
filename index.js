@@ -100,7 +100,6 @@ function cPush() {
     console.log("Image saved, step: "+cStep);
 }
 function cUndo() {
-    
     if (cStep > 0) {
         cStep--;
         console.log("Undo, steps: "+cStep);
@@ -119,7 +118,10 @@ function cRedo() {
         console.log("Redo, step: "+cStep);
         var canvasPic = new Image();
         canvasPic.src = cPushArray[cStep];
-        canvasPic.onload = function () { ctx.drawImage(canvasPic, 0, 0); }
+        canvasPic.onload = function () { 
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(canvasPic, 0, 0); 
+        }
     }
 }
 function clearcanvas(){
