@@ -47,6 +47,7 @@ function findxy(movement, e){
             else if(cur_function=="circle") draw_circle();
             else if(cur_function=="triangle") draw_triangle();
             else if(cur_function=="rectangle") draw_rectangle();
+            
             if(initial_stroke==true) initial_stroke = false;
         }
     } else if(movement == "down"){
@@ -59,6 +60,7 @@ function findxy(movement, e){
         down_x = cur_x;
         down_y = cur_y;
         console.log(cur_x, cur_y);
+        if(cur_function=="text") put_text();
     } else if(movement == "up"){
         if(cur_function !="rectangle" && cur_function !="circle" && cur_function !="triangle") cPush();
         cRefresh();
@@ -182,4 +184,11 @@ function draw_triangle(){
     ctx.stroke();
     ctx.closePath();
     cPush();
+}
+function put_text(){// TODO: positioning, font, size...
+    var t=document.getElementById("text_input").value;
+    ctx.font = "30px Comic Sans MS";
+    ctx.fillStyle = "red";
+    ctx.textAlign = "center";
+    ctx.fillText(t, down_x, down_y);
 }
