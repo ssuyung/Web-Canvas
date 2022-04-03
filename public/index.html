@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body onload="init()">
+        <h1 style="font-family: fantasy; color:bisque">My Canvas</h1>
+        <div style="float: left">
+            <canvas id="myCanvas" width="800" height="600">
+            Your browser does not support the HTML canvas tag.
+            </canvas>
+        </div>
+
+        
+        <div>
+            <!-- tools -->
+            <table>
+                <tr><td><input type="image" class="button" id="eraser" src="./src/eraser.png" onClick="clickbutton('eraser')" /></td>
+                    <td><input type="image" class="button" id="pen" src="./src/big-paint-brush.png" onClick="clickbutton('pen')"/></td>
+                    <td><input type="image" class="button" id="triangle" src="./src/triangle.png" onClick="clickbutton('triangle')"/></td>
+                    <td><input type="image" class="button" id="circle" src="./src/circle.png" onClick="clickbutton('circle')"/></td>
+                    <td><input type="image" class="button" id="rectangle" src="./src/rectangle.png" onClick="clickbutton('rectangle')"/></td>
+                </tr>
+                
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        <div class="slidecontainer">
+                        <input type="range" oninput="changeThickness()" min="1" max="100" value="50" class="slider" id="thickness">
+                        </div>
+                    </td>
+                    <td><input type="color" id="colorpicker" name="head" value="#000000" style="float:left"/></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td><input type="image" class="button" id="text" src="./src/text.png" onClick="clickbutton('text')" width="20" height="20" style="float:left"/></td>
+                    <td><input type="text" id="text_input" value=""></td>
+                    <td><div>
+                        <label for="cars">Font:</label>
+                        <select name="font" id="font" onChange="change_font(this.value)">
+                            <option value="Arial" style="font-family: Arial">Arial</option>
+                            <option value="Times New Roman" style="font-family: Times New Roman">Times New Roman</option>
+                            <option value="Courier New" style="font-family: Courier New">Courier New</option>
+                            <option value="Brush Script MT" style="font-family: Brush Script MT">Brush Script MT</option>
+                            <option value="Georgia" style="font-family: Georgia">Georgia</option>
+                            <option value="Garamond" style="font-family: Garamond">Garamond</option>
+                            <option value="Fantasy" style="font-family: Fantasy">Fantasy</option>
+                            <option value="Comic Sans" style="font-family: Comic Sans">Comic Sans</option> 
+                            <option value="Monaco" style="font-family: Monaco">Monaco</option>
+                        </select>
+                    </div></td>
+                </tr>
+            </table>
+            <table>
+            <!-- clear/undo/redo -->
+                <tr>
+                    <td><input type="image" class="button" id="undo" src="./src/undo.png" onClick="cUndo()" width="20" height="20" style="float:left"/></td>
+                    <td><input type="image" class="button" id="redo" src="./src/redo.png" onClick="cRedo()" width="20" height="20" style="float:left"/></td>
+                    <td><input type="image" class="button" id="clear" src="./src/delete.png" onClick="clearcanvas()" width="20" height="20" style="float:left"/></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td><a href="" download id="download" onClick="this.href=canvas.toDataURL();">
+                        <img src="./src/download.png" class="button" id="download_src"width="20" height="20" style="float:left"/>
+                    </a></td>
+                    <td><label class="file-input" src="hello.jpg">
+                        select file to upload
+                        <input type="file" class="file" id="file_selector" value="select">
+                    </label></td>
+                </tr>
+            </table>
+        
+    
+    </body>
+    <script src="index.js"></script>
+</html>
