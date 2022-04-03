@@ -1,5 +1,5 @@
 #myCanvas{
-    /* cursor: url("./src/big-paint-brush_shrinked.png"), auto; */
+    background: linear-gradient(to top right, #dddddd 0%, #ffffff 100%);
     border:1px solid #000000;
 }
 /* body{
@@ -9,7 +9,16 @@
     width: 40px;
     height: 40px;
     /* border:1px solid #000000; */
-    float:left;
+    /* float:center; */
+    background-color: #e9d4ef;
+    border:#fff;
+
+    color: white;
+    padding: 20px;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px; 
+    border-radius: 12px;
 }
 .file-input{
     display: block;
@@ -33,6 +42,6 @@
     height: 0.1px;
     position: absolute;
   }
-/* body {
-    background: linear-gradient(to top right, #33ccff 0%, #ff99cc 100%);
-} */
+body{
+    background: linear-gradient(to top right, #00ff99 0%, #9933ff 100%);
+}
