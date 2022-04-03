@@ -192,3 +192,24 @@ function put_text(){// TODO: positioning, font, size...
     ctx.textAlign = "center";
     ctx.fillText(t, down_x, down_y);
 }
+function get_image(){
+    var image = new Image();
+    
+    image.onload = function() {
+        var w = this.width,
+            h = this.height;
+        
+        canvas.width = w;
+        canvas.height = h;
+        ctx.drawImage(this, 0, 0, w, h);
+        //ctx.fillText('Mood', 163, 191); 
+  }
+
+  image.src = 'hello.jpg';
+}
+// function download_image(){
+//     console.log("download img");
+//     var m=document.getElementById("download");
+//     var img = canvas.toDataURL("image/png");
+//     document.write('<img src="'+img+'"/>');
+// }

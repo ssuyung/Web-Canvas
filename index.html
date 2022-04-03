@@ -27,9 +27,14 @@
             <input type="image" class="button" id="clear" src="hello.jpg" onClick="clearcanvas()" width="20" height="20" style="float:left"/>
             <input type="image" class="button" id="undo" src="hello.jpg" onClick="cUndo()" width="20" height="20" style="float:left"/>
             <input type="image" class="button" id="redo" src="hello.jpg" onClick="cRedo()" width="20" height="20" style="float:left"/>
+            <input type="image" class="button" id="image" src="hello.jpg" onClick="get_image()" width="20" height="20" style="float:left"/>
         </div>
+        <input type="file" id="file-selector">
         <br>
-        <div>
+        <a href="" download id="download" onClick="this.href=canvas.toDataURL();">
+            <img src="hello.jpg" id="download_src"width="20" height="20" style="float:left"/>
+        </a>
+        <!-- <div>
             <form action="/action_page.php">
                 <p>Please select your favorite Web language:</p>
                 <input type="radio" id="html" name="fav_language" value="HTML">
@@ -38,7 +43,7 @@
                 <label for="css">CSS</label><br>
                 <input type="radio" id="javascript" name="fav_language" value="JavaScript">
                 <label for="javascript">JavaScript</label>
-        </div>
+        </div> -->
         <div class="slidecontainer">
             <input type="range" oninput="changeThickness()" min="1" max="100" value="50" class="slider" id="thickness">
         </div>
