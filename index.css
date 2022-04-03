@@ -1,7 +1,10 @@
 #myCanvas{
-    cursor:url('./src/big-paint-brush.png');
+    /* cursor: url("./src/big-paint-brush_shrinked.png"), auto; */
     border:1px solid #000000;
 }
+/* body{
+    cursor: url("./src/big-paint-brush_shrinked.png"), auto;
+} */
 .button{
     width: 40px;
     height: 40px;

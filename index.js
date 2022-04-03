@@ -51,7 +51,7 @@ function findxy(movement, e){
         prev_y = cur_y
         cur_x = e.clientX - canvas.offsetLeft;
         cur_y = e.clientY - canvas.offsetTop;
-        //canvas.style.cursor=
+        change_cursor();
         if(mouse_down){
             if(cur_function=="pen") draw();
             else if(cur_function=="eraser") erase();
@@ -220,4 +220,12 @@ function get_image(){// reference only, not being used
   }
 
   image.src = 'hello.jpg';
+}
+function change_cursor(){
+    if(cur_function=="pen") canvas.style.cursor="url('./src/big-paint-brush_shrinked.png'), auto";
+    else if(cur_function=="eraser") canvas.style.cursor="url('./src/eraser_shrinked.png'), auto";
+    else if(cur_function=="circle") canvas.style.cursor="url('./src/circle_shrinked.png'), auto";
+    else if(cur_function=="rectangle") canvas.style.cursor="url('./src/rectangle_shrinked.png'), auto";
+    else if(cur_function=="triangle") canvas.style.cursor="url('./src/triangle_shrinked.png'), auto";
+    else if(cur_function=="text") canvas.style.cursor="url('./src/text_shrinked.png'), auto";
 }
