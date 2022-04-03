@@ -34,6 +34,16 @@ function init() {
         findxy('out', e)
     }, false);
     window.addEventListener('popstate', changeStep, false);
+    document.getElementById('file-selector').addEventListener('change', handleFiles);
+
+}
+function handleFiles(e) {//upload image and draw on canvas
+    var img = new Image;
+    img.src = URL.createObjectURL(e.target.files[0]);
+    img.onload = function() {
+        ctx.drawImage(img, 20,20);
+        alert('the image is drawn');
+    }
 }
 function findxy(movement, e){
     if(movement == "move"){
@@ -193,6 +203,9 @@ function put_text(){// TODO: positioning, font, size...
     ctx.fillText(t, down_x, down_y);
 }
 function get_image(){
+    
+    //alert('Selected file: ' + document.getElementById("file_selector").value);
+
     var image = new Image();
     
     image.onload = function() {
