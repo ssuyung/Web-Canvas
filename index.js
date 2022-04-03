@@ -34,7 +34,7 @@ function init() {
         findxy('out', e)
     }, false);
     window.addEventListener('popstate', changeStep, false);
-    document.getElementById('file-selector').addEventListener('change', handleFiles);
+    document.getElementById('file_selector').addEventListener('change', handleFiles);
 
 }
 function handleFiles(e) {//upload image and draw on canvas
@@ -42,7 +42,7 @@ function handleFiles(e) {//upload image and draw on canvas
     img.src = URL.createObjectURL(e.target.files[0]);
     img.onload = function() {
         ctx.drawImage(img, 20,20);
-        alert('the image is drawn');
+       // alert('the image is drawn');
     }
 }
 function findxy(movement, e){
@@ -51,6 +51,7 @@ function findxy(movement, e){
         prev_y = cur_y
         cur_x = e.clientX - canvas.offsetLeft;
         cur_y = e.clientY - canvas.offsetTop;
+        //canvas.style.cursor=
         if(mouse_down){
             if(cur_function=="pen") draw();
             else if(cur_function=="eraser") erase();
@@ -202,7 +203,7 @@ function put_text(){// TODO: positioning, font, size...
     ctx.textAlign = "center";
     ctx.fillText(t, down_x, down_y);
 }
-function get_image(){
+function get_image(){// reference only, not being used
     
     //alert('Selected file: ' + document.getElementById("file_selector").value);
 
@@ -220,9 +221,3 @@ function get_image(){
 
   image.src = 'hello.jpg';
 }
-// function download_image(){
-//     console.log("download img");
-//     var m=document.getElementById("download");
-//     var img = canvas.toDataURL("image/png");
-//     document.write('<img src="'+img+'"/>');
-// }

@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+    </head>
     <body onload="init()">
     <div style="float: left">
-        <canvas id="myCanvas" width="1000" height="600" style="border:1px solid #000000;">
+        <canvas id="myCanvas" width="800" height="600">
         Your browser does not support the HTML canvas tag.
         </canvas>
         
@@ -11,33 +14,40 @@
         <!-- <img src="hello.jpg"> -->
         <div>
             <input type="color" id="colorpicker" name="head" value="#000000">
-            <input type="image" class="button" id="eraser" src="hello.jpg" onClick="clickbutton('eraser')" width="20" height="20" style="float:left"/>
-            <input type="image" class="button" id="pen" src="hello.jpg" onClick="clickbutton('pen')" width="20" height="20" style="float:left"/>
-            <input type="image" class="button" id="triangle" src="hello.jpg" onClick="clickbutton('triangle')" width="20" height="20" style="float:left"/>
-            <input type="image" class="button" id="circle" src="hello.jpg" onClick="clickbutton('circle')" width="20" height="20" style="float:left"/>
-            <input type="image" class="button" id="rectangle" src="hello.jpg" onClick="clickbutton('rectangle')" width="20" height="20" style="float:left"/>
+            <input type="image" class="button" id="eraser" src="./src/eraser.png" onClick="clickbutton('eraser')" />
+            <input type="image" class="button" id="pen" src="./src/big-paint-brush.png" onClick="clickbutton('pen')"/>
+            <input type="image" class="button" id="triangle" src="./src/triangle.png" onClick="clickbutton('triangle')"/>
+            <input type="image" class="button" id="circle" src="./src/circle.png" onClick="clickbutton('circle')"/>
+            <input type="image" class="button" id="rectangle" src="./src/rectangle.png" onClick="clickbutton('rectangle')"/>
         </div>
         <br>
         <div>
-            <input type="image" class="button" id="text" src="hello.jpg" onClick="clickbutton('text')" width="20" height="20" style="float:left"/>
+            <input type="image" class="button" id="text" src="./src/text.png" onClick="clickbutton('text')" width="20" height="20" style="float:left"/>
             <input type="text" id="text_input" value="">
         </div>
+        <br><br>
+        <div>
+            <input type="image" class="button" id="clear" src="./src/delete.png" onClick="clearcanvas()" width="20" height="20" style="float:left"/>
+            <input type="image" class="button" id="undo" src="./src/undo.png" onClick="cUndo()" width="20" height="20" style="float:left"/>
+            <input type="image" class="button" id="redo" src="./src/redo.png" onClick="cRedo()" width="20" height="20" style="float:left"/>
+        </div>
         <br>
         <div>
-            <input type="image" class="button" id="clear" src="hello.jpg" onClick="clearcanvas()" width="20" height="20" style="float:left"/>
-            <input type="image" class="button" id="undo" src="hello.jpg" onClick="cUndo()" width="20" height="20" style="float:left"/>
-            <input type="image" class="button" id="redo" src="hello.jpg" onClick="cRedo()" width="20" height="20" style="float:left"/>
-            <!-- <input type="image" class="button" id="image" src="hello.jpg" onClick="get_image()" width="20" height="20" style="float:left"/> -->
+            <label class="file-input" src="hello.jpg">
+                select file to upload
+                <input type="file" class="file" id="file_selector" value="select">
+            </label>
         </div>
-        <input type="file" id="file-selector" >
         
         <br>
-        <a href="" download id="download" onClick="this.href=canvas.toDataURL();">
-            <img src="hello.jpg" id="download_src"width="20" height="20" style="float:left"/>
-        </a>
-        
-        <div class="slidecontainer">
-            <input type="range" oninput="changeThickness()" min="1" max="100" value="50" class="slider" id="thickness">
+        <div>
+            <a href="" download id="download" onClick="this.href=canvas.toDataURL();">
+                <img src="hello.jpg" id="download_src"width="20" height="20" style="float:left"/>
+            </a>
+            
+            <div class="slidecontainer">
+                <input type="range" oninput="changeThickness()" min="1" max="100" value="50" class="slider" id="thickness">
+            </div>
         </div>
     </div>
     
