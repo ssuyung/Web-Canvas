@@ -9,7 +9,7 @@ var cur_x, cur_y, prev_x, prev_y, down_x, down_y,
     canvas = document.getElementById('myCanvas'), ctx = canvas.getContext("2d"),
     cur_function="pen",
     cPushArray = new Array(), cStep=-1,
-    color = document.getElementById("colorpicker");
+    color = document.getElementById("colorpicker"), font="Arial";
 function init() {
     // cur_x = cur_y = prev_x = prev_y = 0;
     // mouse_down = false;
@@ -198,8 +198,14 @@ function draw_triangle(){
 }
 function put_text(){// TODO: positioning, font, size...
     var t=document.getElementById("text_input").value;
-    ctx.font = "30px Comic Sans MS";
-    ctx.fillStyle = "red";
+    var txtsize=thickness*0.5+1;
+    console.log(txtsize);
+    // ctx.font = "30px Comic Sans MS";
+    console.log(txtsize+"px "+font);
+    ctx.font = txtsize+"px "+font;
+    console.log(ctx.font);
+    //console.log(toString(txtsize));
+    ctx.fillStyle = color.value;
     ctx.textAlign = "center";
     ctx.fillText(t, down_x, down_y);
 }
@@ -228,4 +234,8 @@ function change_cursor(){
     else if(cur_function=="rectangle") canvas.style.cursor="url('./src/rectangle_shrinked.png'), auto";
     else if(cur_function=="triangle") canvas.style.cursor="url('./src/triangle_shrinked.png'), auto";
     else if(cur_function=="text") canvas.style.cursor="url('./src/text_shrinked.png'), auto";
+}
+function change_font(answer){
+    font=answer;
+    console.log("Change font to "+font);
 }
