@@ -43,5 +43,6 @@
     position: absolute;
   }
 body{
-    background: linear-gradient(to top right, #00ff99 0%, #9933ff 100%);
+    background-image: url("./src/background.jpg");
+    /* background: linear-gradient(to top right, #00ff99 0%, #9933ff 100%); */
 }
